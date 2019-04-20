@@ -1,0 +1,11 @@
+micronaut:
+    application:
+        name: geometry-ws
+    router:
+        static-resources:
+            public:
+                paths: classpath:public
+                mapping: /**
+            swagger:
+                paths: classpath:META-INF/swagger
+                mapping: /swagger/**

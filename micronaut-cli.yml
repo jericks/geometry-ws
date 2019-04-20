@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: geometry.ws
+---
+testFramework: junit
+sourceLanguage: java

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geometry Web Services - API</title>
+
+    <link rel="icon" type="image/png" href="https://unpkg.com/swagger-ui-dist@3.19.4/favicon-32x32.png">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3.19.4/swagger-ui.css">
+
+    <script src="https://unpkg.com/swagger-ui-dist@3.19.4/swagger-ui-standalone-preset.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@3.19.4/swagger-ui-bundle.js"></script>
+</head>
+<body>
+<div id="swagger-ui"></div>
+<script>
+    window.onload = function() {
+        var ui = SwaggerUIBundle({
+            urls: [
+                {
+                    name: "geometry-ws",
+                    url: "swagger/geometry-web-services-0.1.0.yml"
+                }
+            ],
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+            ],
+            plugins: [
+                SwaggerUIBundle.plugins.DownloadUrl
+            ],
+            layout: "StandaloneLayout"
+        });
+        window.ui = ui
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+org.cugos.geometry.ws.WKTGeometryReader
+org.cugos.geometry.ws.GeoJsonGeometryReader
