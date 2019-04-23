@@ -17,7 +17,6 @@ public class HilbertCurveControllerTest extends AbstractControllerTest  {
     public void get() throws Exception {
         HttpRequest request = HttpRequest.GET("/hilbertCurve/wkt/wkt?number=10&geom=" + URLEncoder.encode(polygon, "UTF-8"));
         String geometryStr = client.toBlocking().retrieve(request);
-        System.out.println(geometryStr);
         assertEquals("LINESTRING (-124.96506005438275 44.08758502824516, -122.74877001812759 44.08758502824516, " +
             "-122.74877001812759 46.303875064500325, -124.96506005438275 46.303875064500325, " +
             "-124.96506005438275 48.520165100755484, -124.96506005438275 50.73645513701065, " +
@@ -32,7 +31,6 @@ public class HilbertCurveControllerTest extends AbstractControllerTest  {
     public void post() throws Exception {
         HttpRequest request = HttpRequest.POST("/hilbertCurve/wkt/wkt?number=10", polygon).contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometryStr = client.toBlocking().retrieve(request);
-        System.out.println(geometryStr);
         assertEquals("LINESTRING (-124.96506005438275 44.08758502824516, -122.74877001812759 44.08758502824516, " +
             "-122.74877001812759 46.303875064500325, -124.96506005438275 46.303875064500325, " +
             "-124.96506005438275 48.520165100755484, -124.96506005438275 50.73645513701065, " +
