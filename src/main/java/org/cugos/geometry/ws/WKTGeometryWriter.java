@@ -16,4 +16,8 @@ public class WKTGeometryWriter implements GeometryWriter {
         return "wkt";
     }
 
+    @Override
+    public String getMediaType() {
+        return "text/plain";
+    }
 }
