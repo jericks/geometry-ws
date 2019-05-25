@@ -45,7 +45,7 @@ public class CoordinatesController {
     if (isUnique)  {
       UniqueCoordinateArrayFilter coordinateFilter = new UniqueCoordinateArrayFilter();
       outputGeometry.apply(coordinateFilter);
-      outputGeometry = geometry.getFactory().createMultiPoint(coordinateFilter.getCoordinates());
+      outputGeometry = geometry.getFactory().createMultiPointFromCoords(coordinateFilter.getCoordinates());
     }
 
     String content = writer.write(outputGeometry);
