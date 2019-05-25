@@ -1,5 +1,6 @@
 package org.cugos.geometry.ws;
 
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,7 +13,7 @@ public class BufferController {
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Buffer a geometry", description = "Buffer a geometry with a given distance")
-  public String bufferGet(
+  public HttpResponse bufferGet(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString,
@@ -24,7 +25,7 @@ public class BufferController {
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Buffer a geometry", description = "Buffer a geometry with a given distance")
-  public String bufferPost(
+  public HttpResponse bufferPost(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @Body String geometryString,
@@ -32,12 +33,13 @@ public class BufferController {
      return buffer(from, to, geometryString, distance);
   }
 
-  private String buffer(String from, String to, String geometryString, double distance) throws Exception {
+  private HttpResponse buffer(String from, String to, String geometryString, double distance) throws Exception {
     GeometryReader reader = GeometryReaders.find(from);
     GeometryWriter writer = GeometryWriters.find(to);
     Geometry geometry = reader.read(geometryString);
     Geometry bufferedGeometry = geometry.buffer(distance);
-    return writer.write(bufferedGeometry);
+    String content = writer.write(bufferedGeometry);
+    return HttpResponse.ok(content).contentType(new MediaType(writer.getMediaType()));
   }
 
 }

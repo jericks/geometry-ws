@@ -8,4 +8,6 @@ public interface GeometryWriter {
 
     String getName();
 
+    String getMediaType();
+
 }

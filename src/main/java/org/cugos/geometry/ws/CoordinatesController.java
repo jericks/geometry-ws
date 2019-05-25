@@ -1,5 +1,6 @@
 package org.cugos.geometry.ws;
 
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,7 +15,7 @@ public class CoordinatesController {
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Get Coordinates", description = "Get the coordinates of the geometry.")
-  public String get(
+  public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString,
@@ -26,7 +27,7 @@ public class CoordinatesController {
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Get Coordinates", description = "Get the coordinates of the geometry.")
-  public String post(
+  public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @Body String geometryString,
@@ -34,7 +35,7 @@ public class CoordinatesController {
      return coordinates(from, to, geometryString, unique == null ? Boolean.FALSE : unique);
   }
 
-  private String coordinates(String from, String to, String geometryString, boolean isUnique) throws Exception {
+  private HttpResponse coordinates(String from, String to, String geometryString, boolean isUnique) throws Exception {
     GeometryReader reader = GeometryReaders.find(from);
     GeometryWriter writer = GeometryWriters.find(to);
     Geometry geometry = reader.read(geometryString);
@@ -47,7 +48,8 @@ public class CoordinatesController {
       outputGeometry = geometry.getFactory().createMultiPoint(coordinateFilter.getCoordinates());
     }
 
-    return writer.write(outputGeometry);
+    String content = writer.write(outputGeometry);
+    return HttpResponse.ok(content).contentType(new MediaType(writer.getMediaType()));
   }
 
 }

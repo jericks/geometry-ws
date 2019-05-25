@@ -1,5 +1,6 @@
 package org.cugos.geometry.ws;
 
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,7 +15,7 @@ public class GridController {
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Calculate a Grid", description = "Calculate a grid around the input geometry.")
-  public String get(
+  public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Number of columns") @QueryValue("columns")int columns,
@@ -27,7 +28,7 @@ public class GridController {
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Calculate a Grid", description = "Calculate a grid around the input geometry.")
-  public String post(
+  public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Number of columns") @QueryValue("columns") int columns,
@@ -36,7 +37,7 @@ public class GridController {
      return grid(from, to, geometryString, columns, rows);
   }
 
-  private String grid(String from, String to, String geometryString, int columns, int rows) throws Exception {
+  private HttpResponse grid(String from, String to, String geometryString, int columns, int rows) throws Exception {
     GeometryReader reader = GeometryReaders.find(from);
     GeometryWriter writer = GeometryWriters.find(to);
     Geometry geometry = reader.read(geometryString);
@@ -73,7 +74,8 @@ public class GridController {
     // Create the Geometry grid
     Geometry grid = geometryFactory.createGeometryCollection(geoms);
 
-    return writer.write(grid);
+    String content = writer.write(grid);
+    return HttpResponse.ok(content).contentType(new MediaType(writer.getMediaType()));
   }
 
 }

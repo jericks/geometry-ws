@@ -17,4 +17,8 @@ public class GeoJsonGeometryWriter implements GeometryWriter {
         return "geojson";
     }
 
+    @Override
+    public String getMediaType() {
+        return "application/json";
+    }
 }

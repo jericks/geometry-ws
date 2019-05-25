@@ -1,5 +1,6 @@
 package org.cugos.geometry.ws;
 
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,7 +15,7 @@ public class DelaunayTriangulationController {
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Generate Delaunay Triangulation", description = "Generate a delaunay triangulation of the input geometry")
-  public String get(
+  public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString,
@@ -26,7 +27,7 @@ public class DelaunayTriangulationController {
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Generate Delaunay Triangulation", description = "Generate a delaunay triangulation of the input geometry")
-  public String post(
+  public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @Body String geometryString,
@@ -34,7 +35,7 @@ public class DelaunayTriangulationController {
      return delaunayTriangulation(from, to, geometryString, isConforming);
   }
 
-  private String delaunayTriangulation(String from, String to, String geometryString, boolean isConforming) throws Exception {
+  private HttpResponse delaunayTriangulation(String from, String to, String geometryString, boolean isConforming) throws Exception {
     GeometryReader reader = GeometryReaders.find(from);
     GeometryWriter writer = GeometryWriters.find(to);
     Geometry geometry = reader.read(geometryString);
@@ -50,7 +51,8 @@ public class DelaunayTriangulationController {
       outputGeometry = builder.getTriangles(geometry.getFactory());
     }
 
-    return writer.write(outputGeometry);
+    String content = writer.write(outputGeometry);
+    return HttpResponse.ok(content).contentType(new MediaType(writer.getMediaType()));
   }
 
 }

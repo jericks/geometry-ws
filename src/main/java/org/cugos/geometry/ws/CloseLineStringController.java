@@ -1,5 +1,6 @@
 package org.cugos.geometry.ws;
 
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,7 +13,7 @@ public class CloseLineStringController {
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Close LineString", description = "Close a LineString to create a LinearRing")
-  public String get(
+  public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -23,14 +24,14 @@ public class CloseLineStringController {
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
   @Operation(summary = "Close LineString", description = "Close a LineString to create a LinearRing")
-  public String post(
+  public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {
      return closeLineString(from, to, geometryString);
   }
 
-  private String closeLineString(String from, String to, String geometryString) throws Exception {
+  private HttpResponse closeLineString(String from, String to, String geometryString) throws Exception {
     GeometryReader reader = GeometryReaders.find(from);
     GeometryWriter writer = GeometryWriters.find(to);
     Geometry geometry = reader.read(geometryString);
@@ -53,7 +54,8 @@ public class CloseLineStringController {
       closedCoords[coords.length] = coords[0];
       linearRing = geometryFactory.createLinearRing(closedCoords);
     }
-    return writer.write(linearRing);
+    String content = writer.write(linearRing);
+    return HttpResponse.ok(content).contentType(new MediaType(writer.getMediaType()));
   }
 
 }

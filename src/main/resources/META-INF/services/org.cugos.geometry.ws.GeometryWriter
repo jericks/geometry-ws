@@ -2,3 +2,4 @@ org.cugos.geometry.ws.WKTGeometryWriter
 org.cugos.geometry.ws.GeoJsonGeometryWriter
 org.cugos.geometry.ws.KmlGeometryWriter
 org.cugos.geometry.ws.Gml2GeometryWriter
+org.cugos.geometry.ws.OpenLayersGeometryWriter

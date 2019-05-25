@@ -17,4 +17,8 @@ public class Gml2GeometryWriter implements GeometryWriter {
         return "gml2";
     }
 
+    @Override
+    public String getMediaType() {
+        return "application/xml";
+    }
 }

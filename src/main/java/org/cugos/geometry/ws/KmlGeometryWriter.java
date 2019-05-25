@@ -17,4 +17,9 @@ public class KmlGeometryWriter implements GeometryWriter {
         return "kml";
     }
 
+    @Override
+    public String getMediaType() {
+        return "application/xml";
+    }
+
 }
