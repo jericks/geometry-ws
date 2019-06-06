@@ -20,8 +20,11 @@ public class RandomPointsController {
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString,
-      @Parameter(description = "Number of Points") @QueryValue("number") int numberOfPoints) throws Exception {
-    return randomPoints(from, to, geometryString, numberOfPoints, false, false, Double.NaN);
+      @Parameter(description = "Number of Points") @QueryValue("number") int numberOfPoints,
+      @Parameter(description = "Is Gridded") @QueryValue(value = "gridded", defaultValue = "false") boolean isGridded,
+      @Parameter(description = "Is Constrained to Circle") @QueryValue(value = "constrainedToCircle", defaultValue = "false") boolean isConstrainedToCircle,
+      @Parameter(description = "Gutter Fraction") @QueryValue(value = "gutterFraction", defaultValue = "NaN") double gutterFraction) throws Exception {
+    return randomPoints(from, to, geometryString, numberOfPoints, isGridded, isConstrainedToCircle, gutterFraction);
   }
 
   @Post("/{from}/{to}")
@@ -32,8 +35,11 @@ public class RandomPointsController {
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
       @Parameter(description = "Input Geometry") @Body String geometryString,
-      @Parameter(description = "Number of Points") @QueryValue("number") int numberOfPoints) throws Exception {
-     return randomPoints(from, to, geometryString, numberOfPoints, false, false, Double.NaN);
+      @Parameter(description = "Number of Points") @QueryValue("number") int numberOfPoints,
+      @Parameter(description = "Is Gridded") @QueryValue(value = "gridded", defaultValue = "false") boolean isGridded,
+      @Parameter(description = "Is Constrained to Circle") @QueryValue(value = "constrainedToCircle", defaultValue = "false") boolean isConstrainedToCircle,
+      @Parameter(description = "Gutter Fraction") @QueryValue(value = "gutterFraction", defaultValue = "NaN") double gutterFraction) throws Exception {
+     return randomPoints(from, to, geometryString, numberOfPoints, isGridded, isConstrainedToCircle, gutterFraction);
   }
 
   private HttpResponse randomPoints(String from, String to, String geometryString, int numberOfPoints, boolean isGridded, boolean isConstrainedToCircle, double gutterFraction) throws Exception {
@@ -45,7 +51,7 @@ public class RandomPointsController {
       geometry = geometry.getEnvelope();
     }
     if (!(geometry instanceof Polygonal)) {
-      throw new IllegalArgumentException("Geometry must be a Polygon or MultiPolygon!");
+      return HttpResponse.badRequest("Geometry must be a Polygon or MultiPolygon!");
     }
     Geometry randomGeometry;
     if (isGridded) {
