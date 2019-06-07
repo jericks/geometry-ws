@@ -37,11 +37,11 @@ public class CloseLineStringController {
     Geometry geometry = reader.read(geometryString);
 
     if (!(geometry instanceof LineString)) {
-      throw new IllegalArgumentException("Input geometry must be a LineString!");
+      return HttpResponse.badRequest("Input geometry must be a LineString!");
     }
     LineString lineString = (LineString)geometry;
     if (lineString.getCoordinates().length < 3) {
-      throw new IllegalArgumentException("You need at least three points to close a LineString!");
+      return HttpResponse.badRequest("You need at least three points to close a LineString!");
     }
     GeometryFactory geometryFactory = new GeometryFactory();
     LinearRing linearRing;
