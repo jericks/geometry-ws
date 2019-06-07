@@ -11,7 +11,6 @@ import static org.junit.Assert.assertEquals;
 
 public class CrossesControllerTest extends AbstractControllerTest  {
 
-
     private final String lineGeometry1 = "LINESTRING (5 5, 5 15)";
     private final String polygonGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
     private final String lineGeometry2 = "LINESTRING (15 15, 20 20)";
