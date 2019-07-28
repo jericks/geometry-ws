@@ -36,7 +36,7 @@ public class IsRingControllerTest extends AbstractControllerTest  {
     }
 
     @Test
-    public void postIsRectangle() throws Exception {
+    public void postIsRing() throws Exception {
         HttpRequest request = HttpRequest.POST("/isRing/wkt", isRingGeometry).contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("true", geometry);
