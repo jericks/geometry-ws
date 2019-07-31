@@ -1,0 +1,54 @@
+package org.cugos.geometry.ws;
+
+import io.micronaut.http.HttpRequest;
+import io.micronaut.http.MediaType;
+import io.micronaut.http.client.exceptions.HttpClientException;
+import org.junit.Test;
+
+import java.net.URLEncoder;
+
+import static org.junit.Assert.assertEquals;
+
+public class StartPointControllerTest extends AbstractControllerTest  {
+
+    private final String lineString = "LINESTRING (1 1, 10 10)";
+
+    private final String multiLineString = "MULTILINESTRING ((1 1, 10 10), (5 5, 20 20))";
+
+    private final String point = "POINT (1 1)";
+
+    @Test
+    public void getLineString() throws Exception {
+        HttpRequest request = HttpRequest.GET("/startPoint/wkt/wkt?geom=" + URLEncoder.encode(lineString, "UTF-8"));
+        String geometry = client.toBlocking().retrieve(request);
+        assertEquals("POINT (1 1)", geometry);
+    }
+
+    @Test
+    public void getMultiLineString() throws Exception {
+        HttpRequest request = HttpRequest.GET("/startPoint/wkt/wkt?geom=" + URLEncoder.encode(multiLineString, "UTF-8"));
+        String geometry = client.toBlocking().retrieve(request);
+        assertEquals("POINT (1 1)", geometry);
+    }
+
+    @Test
+    public void postLineString() throws Exception {
+        HttpRequest request = HttpRequest.POST("/startPoint/wkt/wkt", lineString).contentType(MediaType.TEXT_PLAIN_TYPE);
+        String geometry = client.toBlocking().retrieve(request);
+        assertEquals("POINT (1 1)", geometry);
+    }
+
+    @Test
+    public void postMultiLineString() throws Exception {
+        HttpRequest request = HttpRequest.POST("/startPoint/wkt/wkt", multiLineString).contentType(MediaType.TEXT_PLAIN_TYPE);
+        String geometry = client.toBlocking().retrieve(request);
+        assertEquals("POINT (1 1)", geometry);
+    }
+
+    @Test(expected = HttpClientException.class)
+    public void badRequest() throws Exception {
+        HttpRequest request = HttpRequest.GET("/startPoint/wkt/wkt?geom=" + URLEncoder.encode(point, "UTF-8"));
+        client.toBlocking().retrieve(request);
+    }
+    
+}
