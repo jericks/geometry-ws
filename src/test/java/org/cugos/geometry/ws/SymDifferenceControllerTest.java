@@ -39,7 +39,7 @@ public class SymDifferenceControllerTest extends AbstractControllerTest  {
 
     @Test(expected = HttpClientException.class)
     public void badRequest() throws Exception {
-        HttpRequest request = HttpRequest.GET("/difference/wkt/wkt?geom=" + URLEncoder.encode(pointGeometry, "UTF-8"));
+        HttpRequest request = HttpRequest.GET("/symDifference/wkt/wkt?geom=" + URLEncoder.encode(pointGeometry, "UTF-8"));
         client.toBlocking().retrieve(request);
     }
 
