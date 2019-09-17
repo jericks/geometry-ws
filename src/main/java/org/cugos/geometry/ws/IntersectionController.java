@@ -39,7 +39,7 @@ public class IntersectionController {
       Geometry firstGeometry = geometry.getGeometryN(0);
       Geometry secondGeometry = geometry.getGeometryN(1);
       Geometry result = firstGeometry.intersection(secondGeometry);
-      return HttpResponse.ok(result).contentType(new MediaType(writer.getMediaType()));
+      return HttpResponse.ok(writer.write(result)).contentType(new MediaType(writer.getMediaType()));
     } else {
       return HttpResponse.badRequest("A Geometry Collection with two geometries is required!");
     }
