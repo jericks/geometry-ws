@@ -26,7 +26,7 @@ public class WithinDistanceController {
   @Operation(summary = "Within Distance", description = "Whether one geometry is within a distance of another")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
-      @Parameter(description = "Input Geometry") @Body("geom") String geometryString,
+      @Parameter(description = "Input Geometry") @Body String geometryString,
       @Parameter(description = "Distance") @QueryValue("distance") double distance) throws Exception {
     return withinDistance(from, geometryString, distance);
   }

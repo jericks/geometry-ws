@@ -25,7 +25,7 @@ public class CoversController {
   @Operation(summary = "Covers", description = "Whether one geometry covers another")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
-      @Parameter(description = "Input Geometry") @Body("geom") String geometryString) throws Exception {
+      @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {
     return covers(from, geometryString);
   }
 
