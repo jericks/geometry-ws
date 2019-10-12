@@ -17,21 +17,17 @@ public class SymDifferenceControllerTest extends AbstractControllerTest  {
         "((10 5, 10 10, 5 10, 5 20, 20 20, 20 5, 10 5)))";
     private final String pointGeometry = "POINT (5 5)";
 
-    private String geometryCollection(String firstGeometry, String secondGeometry) {
-        return String.format("GEOMETRYCOLLECTION (%s, %s)", firstGeometry, secondGeometry);
-    }
-
     @Test
     public void get() throws Exception {
         HttpRequest request = HttpRequest.GET("/symDifference/wkt/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(polygonGeometry, anotherPolygonGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(polygonGeometry, anotherPolygonGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals(symDifferenceGeometry, value);
     }
 
     @Test
     public void post() throws Exception {
-        HttpRequest request = HttpRequest.POST("/symDifference/wkt/wkt", geometryCollection(polygonGeometry, anotherPolygonGeometry))
+        HttpRequest request = HttpRequest.POST("/symDifference/wkt/wkt", Geometries.geometryCollection(polygonGeometry, anotherPolygonGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals(symDifferenceGeometry, geometry);

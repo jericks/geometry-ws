@@ -11,16 +11,12 @@ import static org.junit.Assert.assertEquals;
 
 public class EqualsControllerTest extends AbstractControllerTest  {
 
-    private String geometryCollection(String firstGeometry, String secondGeometry) {
-        return String.format("GEOMETRYCOLLECTION (%s, %s)", firstGeometry, secondGeometry);
-    }
-
     @Test
     public void getEquals() throws Exception {
         String inputGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         String otherGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         HttpRequest request = HttpRequest.GET("/equals/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("true", value);
     }
@@ -30,7 +26,7 @@ public class EqualsControllerTest extends AbstractControllerTest  {
         String inputGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         String otherGeometry = "POLYGON ((1 1, 1 10, 10 10, 10 1, 1 1))";
         HttpRequest request = HttpRequest.GET("/equals/wkt" +
-                "?geom=" + URLEncoder.encode(geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
+                "?geom=" + URLEncoder.encode(Geometries.geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("false", value);
     }
@@ -40,7 +36,7 @@ public class EqualsControllerTest extends AbstractControllerTest  {
         String inputGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         String otherGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         HttpRequest request = HttpRequest.GET("/equals/wkt" +
-                "?type=exact&tolerance=1.1&geom=" + URLEncoder.encode(geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
+                "?type=exact&tolerance=1.1&geom=" + URLEncoder.encode(Geometries.geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("true", value);
     }
@@ -50,7 +46,7 @@ public class EqualsControllerTest extends AbstractControllerTest  {
         String inputGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         String otherGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         HttpRequest request = HttpRequest.GET("/equals/wkt" +
-                "?type=topo&geom=" + URLEncoder.encode(geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
+                "?type=topo&geom=" + URLEncoder.encode(Geometries.geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("true", value);
     }
@@ -60,7 +56,7 @@ public class EqualsControllerTest extends AbstractControllerTest  {
         String inputGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         String otherGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         HttpRequest request = HttpRequest.GET("/equals/wkt" +
-                "?type=norm&geom=" + URLEncoder.encode(geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
+                "?type=norm&geom=" + URLEncoder.encode(Geometries.geometryCollection(inputGeometry, otherGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("true", value);
     }
@@ -69,7 +65,7 @@ public class EqualsControllerTest extends AbstractControllerTest  {
     public void postEquals() throws Exception {
         String inputGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
         String otherGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
-        HttpRequest request = HttpRequest.POST("/equals/wkt", geometryCollection(inputGeometry, otherGeometry))
+        HttpRequest request = HttpRequest.POST("/equals/wkt", Geometries.geometryCollection(inputGeometry, otherGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("true", geometry);

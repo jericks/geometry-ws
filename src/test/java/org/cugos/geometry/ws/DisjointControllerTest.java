@@ -15,14 +15,10 @@ public class DisjointControllerTest extends AbstractControllerTest  {
     private final String disjointGeometry = "LINESTRING (15 15, 20 20)";
     private final String notDisjointGeometry = "LINESTRING (5 5, 5 15)";
 
-    private String geometryCollection(String firstGeometry, String secondGeometry) {
-        return String.format("GEOMETRYCOLLECTION (%s, %s)", firstGeometry, secondGeometry);
-    }
-
     @Test
     public void getDisjoint() throws Exception {
         HttpRequest request = HttpRequest.GET("/disjoint/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(polygonGeometry, disjointGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(polygonGeometry, disjointGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("true", value);
     }
@@ -30,14 +26,14 @@ public class DisjointControllerTest extends AbstractControllerTest  {
     @Test
     public void getIsNotDisjoint() throws Exception {
         HttpRequest request = HttpRequest.GET("/disjoint/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(notDisjointGeometry, polygonGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(notDisjointGeometry, polygonGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("false", value);
     }
     
     @Test
     public void postDisjoint() throws Exception {
-        HttpRequest request = HttpRequest.POST("/disjoint/wkt", geometryCollection(polygonGeometry, disjointGeometry))
+        HttpRequest request = HttpRequest.POST("/disjoint/wkt", Geometries.geometryCollection(polygonGeometry, disjointGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("true", geometry);
@@ -45,7 +41,7 @@ public class DisjointControllerTest extends AbstractControllerTest  {
 
     @Test
     public void postIsNotDisjoint() throws Exception {
-        HttpRequest request = HttpRequest.POST("/disjoint/wkt", geometryCollection(notDisjointGeometry, polygonGeometry))
+        HttpRequest request = HttpRequest.POST("/disjoint/wkt", Geometries.geometryCollection(notDisjointGeometry, polygonGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("false", geometry);

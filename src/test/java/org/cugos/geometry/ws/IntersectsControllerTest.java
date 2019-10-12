@@ -15,14 +15,10 @@ public class IntersectsControllerTest extends AbstractControllerTest  {
     private final String pointGeometry = "POINT (5 5)";
     private final String anotherPointGeometry = "POINT (15 15)";
 
-    private String geometryCollection(String firstGeometry, String secondGeometry) {
-        return String.format("GEOMETRYCOLLECTION (%s, %s)", firstGeometry, secondGeometry);
-    }
-
     @Test
     public void getContains() throws Exception {
         HttpRequest request = HttpRequest.GET("/intersects/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(polygonGeometry, pointGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(polygonGeometry, pointGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("true", value);
     }
@@ -30,14 +26,14 @@ public class IntersectsControllerTest extends AbstractControllerTest  {
     @Test
     public void getDoesNotContain() throws Exception {
         HttpRequest request = HttpRequest.GET("/intersects/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(anotherPointGeometry, polygonGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(anotherPointGeometry, polygonGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("false", value);
     }
     
     @Test
     public void postContains() throws Exception {
-        HttpRequest request = HttpRequest.POST("/intersects/wkt", geometryCollection(polygonGeometry, pointGeometry))
+        HttpRequest request = HttpRequest.POST("/intersects/wkt", Geometries.geometryCollection(polygonGeometry, pointGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("true", geometry);
@@ -45,7 +41,7 @@ public class IntersectsControllerTest extends AbstractControllerTest  {
 
     @Test
     public void postDoesNotContains() throws Exception {
-        HttpRequest request = HttpRequest.POST("/intersects/wkt", geometryCollection(anotherPointGeometry, polygonGeometry))
+        HttpRequest request = HttpRequest.POST("/intersects/wkt", Geometries.geometryCollection(anotherPointGeometry, polygonGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("false", geometry);

@@ -11,14 +11,10 @@ import static org.junit.Assert.assertEquals;
 
 public class WithinDistanceControllerTest extends AbstractControllerTest  {
 
-    private String geometryCollection(String firstGeometry, String secondGeometry) {
-        return String.format("GEOMETRYCOLLECTION (%s, %s)", firstGeometry, secondGeometry);
-    }
-
     @Test
     public void getWithinDistance() throws Exception {
         HttpRequest request = HttpRequest.GET("/withinDistance/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection("POINT (1 1)", "POINT (20 23)"), "UTF-8") +
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection("POINT (1 1)", "POINT (20 23)"), "UTF-8") +
             "&distance=30");
         String value = client.toBlocking().retrieve(request);
         assertEquals("true", value);
@@ -27,7 +23,7 @@ public class WithinDistanceControllerTest extends AbstractControllerTest  {
     @Test
     public void getIsNotWithinDistance() throws Exception {
         HttpRequest request = HttpRequest.GET("/withinDistance/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection("POINT (1 1)", "POINT (20 23)"), "UTF-8") +
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection("POINT (1 1)", "POINT (20 23)"), "UTF-8") +
             "&distance=10");
         String value = client.toBlocking().retrieve(request);
         assertEquals("false", value);
@@ -35,7 +31,7 @@ public class WithinDistanceControllerTest extends AbstractControllerTest  {
     
     @Test
     public void postWithinDistance() throws Exception {
-        HttpRequest request = HttpRequest.POST("/withinDistance/wkt?distance=30", geometryCollection("POINT (1 1)", "POINT (20 23)"))
+        HttpRequest request = HttpRequest.POST("/withinDistance/wkt?distance=30", Geometries.geometryCollection("POINT (1 1)", "POINT (20 23)"))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("true", geometry);
@@ -43,7 +39,7 @@ public class WithinDistanceControllerTest extends AbstractControllerTest  {
 
     @Test
     public void postIsNotWithinDistance() throws Exception {
-        HttpRequest request = HttpRequest.POST("/withinDistance/wkt?distance=10", geometryCollection("POINT (1 1)", "POINT (20 23)"))
+        HttpRequest request = HttpRequest.POST("/withinDistance/wkt?distance=10", Geometries.geometryCollection("POINT (1 1)", "POINT (20 23)"))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("false", geometry);

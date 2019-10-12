@@ -15,14 +15,10 @@ public class OverlapsControllerTest extends AbstractControllerTest  {
     private final String secondGeometry = "POLYGON ((2 2, 2 14, 14 14, 14 2, 2 2))";
     private final String thirdGeometry = "POINT (15 15)";
 
-    private String geometryCollection(String firstGeometry, String secondGeometry) {
-        return String.format("GEOMETRYCOLLECTION (%s, %s)", firstGeometry, secondGeometry);
-    }
-
     @Test
     public void getOverlaps() throws Exception {
         HttpRequest request = HttpRequest.GET("/overlaps/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(firstGeometry, secondGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(firstGeometry, secondGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("true", value);
     }
@@ -30,14 +26,14 @@ public class OverlapsControllerTest extends AbstractControllerTest  {
     @Test
     public void getDoesNotOverlap() throws Exception {
         HttpRequest request = HttpRequest.GET("/overlaps/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(firstGeometry, thirdGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(firstGeometry, thirdGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("false", value);
     }
     
     @Test
     public void postOverlaps() throws Exception {
-        HttpRequest request = HttpRequest.POST("/overlaps/wkt", geometryCollection(firstGeometry, secondGeometry))
+        HttpRequest request = HttpRequest.POST("/overlaps/wkt", Geometries.geometryCollection(firstGeometry, secondGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("true", geometry);
@@ -45,7 +41,7 @@ public class OverlapsControllerTest extends AbstractControllerTest  {
 
     @Test
     public void postDoesNotOverlap() throws Exception {
-        HttpRequest request = HttpRequest.POST("/overlaps/wkt", geometryCollection(firstGeometry, thirdGeometry))
+        HttpRequest request = HttpRequest.POST("/overlaps/wkt", Geometries.geometryCollection(firstGeometry, thirdGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("false", geometry);

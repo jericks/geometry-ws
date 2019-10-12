@@ -17,14 +17,10 @@ public class PlacePointControllerTest extends AbstractControllerTest  {
 
     private final String snappedPoint = "POINT (3.75 3.75)";
 
-    private String geometryCollection(String firstGeometry, String secondGeometry) {
-        return String.format("GEOMETRYCOLLECTION (%s, %s)", firstGeometry, secondGeometry);
-    }
-
     @Test
     public void get() throws Exception {
         HttpRequest request = HttpRequest.GET("/placePoint/wkt/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(lineGeometry, pointGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(lineGeometry, pointGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals(snappedPoint, value);
     }
@@ -32,7 +28,7 @@ public class PlacePointControllerTest extends AbstractControllerTest  {
     @Test
     public void getPointLine() throws Exception {
         HttpRequest request = HttpRequest.GET("/placePoint/wkt/wkt" +
-                "?geom=" + URLEncoder.encode(geometryCollection(pointGeometry, lineGeometry), "UTF-8"));
+                "?geom=" + URLEncoder.encode(Geometries.geometryCollection(pointGeometry, lineGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals(snappedPoint, value);
     }
@@ -40,7 +36,7 @@ public class PlacePointControllerTest extends AbstractControllerTest  {
 
     @Test
     public void post() throws Exception {
-        HttpRequest request = HttpRequest.POST("/placePoint/wkt/wkt", geometryCollection(lineGeometry, pointGeometry))
+        HttpRequest request = HttpRequest.POST("/placePoint/wkt/wkt", Geometries.geometryCollection(lineGeometry, pointGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals(snappedPoint, geometry);
@@ -55,7 +51,7 @@ public class PlacePointControllerTest extends AbstractControllerTest  {
 
     @Test(expected = HttpClientException.class)
     public void notPointAndLine() throws Exception {
-        HttpRequest request = HttpRequest.GET("/placePoint/wkt/wkt?geom=" + URLEncoder.encode(geometryCollection(pointGeometry, pointGeometry), "UTF-8"));
+        HttpRequest request = HttpRequest.GET("/placePoint/wkt/wkt?geom=" + URLEncoder.encode(Geometries.geometryCollection(pointGeometry, pointGeometry), "UTF-8"));
         client.toBlocking().retrieve(request);
     }
 

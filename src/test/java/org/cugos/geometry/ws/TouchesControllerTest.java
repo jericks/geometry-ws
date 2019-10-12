@@ -11,18 +11,14 @@ import static org.junit.Assert.assertEquals;
 
 public class TouchesControllerTest extends AbstractControllerTest  {
 
-    String polygonGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
-    String anotherPolygonGeometry = "POLYGON ((10 10, 10 14, 14 14, 14 10, 10 10))";
+    private final String polygonGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
+    private final String anotherPolygonGeometry = "POLYGON ((10 10, 10 14, 14 14, 14 10, 10 10))";
     private final String pointGeometry = "POINT (15 15)";
-
-    private String geometryCollection(String firstGeometry, String secondGeometry) {
-        return String.format("GEOMETRYCOLLECTION (%s, %s)", firstGeometry, secondGeometry);
-    }
 
     @Test
     public void getTouches() throws Exception {
         HttpRequest request = HttpRequest.GET("/touches/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(polygonGeometry, anotherPolygonGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(polygonGeometry, anotherPolygonGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("true", value);
     }
@@ -30,14 +26,14 @@ public class TouchesControllerTest extends AbstractControllerTest  {
     @Test
     public void getDoesNotTouch() throws Exception {
         HttpRequest request = HttpRequest.GET("/touches/wkt" +
-            "?geom=" + URLEncoder.encode(geometryCollection(pointGeometry, polygonGeometry), "UTF-8"));
+            "?geom=" + URLEncoder.encode(Geometries.geometryCollection(pointGeometry, polygonGeometry), "UTF-8"));
         String value = client.toBlocking().retrieve(request);
         assertEquals("false", value);
     }
     
     @Test
     public void postTouches() throws Exception {
-        HttpRequest request = HttpRequest.POST("/touches/wkt", geometryCollection(polygonGeometry, anotherPolygonGeometry))
+        HttpRequest request = HttpRequest.POST("/touches/wkt", Geometries.geometryCollection(polygonGeometry, anotherPolygonGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("true", geometry);
@@ -45,7 +41,7 @@ public class TouchesControllerTest extends AbstractControllerTest  {
 
     @Test
     public void postDoesNotTouches() throws Exception {
-        HttpRequest request = HttpRequest.POST("/touches/wkt", geometryCollection(pointGeometry, polygonGeometry))
+        HttpRequest request = HttpRequest.POST("/touches/wkt", Geometries.geometryCollection(pointGeometry, polygonGeometry))
             .contentType(MediaType.TEXT_PLAIN_TYPE);
         String geometry = client.toBlocking().retrieve(request);
         assertEquals("false", geometry);
