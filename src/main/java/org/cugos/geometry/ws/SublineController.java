@@ -14,7 +14,7 @@ public class SublineController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Subline", description = "Extract a sub-line from a lineal geometry.")
+  @Operation(operationId = "subline get", summary = "Subline", description = "Extract a sub-line from a lineal geometry.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -27,7 +27,7 @@ public class SublineController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Subline", description = "Extract a sub-line from a lineal geometry.")
+  @Operation(operationId = "subline post", summary = "Subline", description = "Extract a sub-line from a lineal geometry.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

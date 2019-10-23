@@ -14,7 +14,7 @@ public class GridController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate a Grid", description = "Calculate a grid around the input geometry.")
+  @Operation(operationId = "grid get", summary = "Calculate a Grid", description = "Calculate a grid around the input geometry.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -27,7 +27,7 @@ public class GridController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate a Grid", description = "Calculate a grid around the input geometry.")
+  @Operation(operationId = "grid post", summary = "Calculate a Grid", description = "Calculate a grid around the input geometry.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

@@ -12,7 +12,7 @@ public class IsClosedController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Is Closed", description = "Determine if the input geometry is closed or not.")
+  @Operation(operationId = "is closed get", summary = "Is Closed", description = "Determine if the input geometry is closed or not.")
   public String get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -22,7 +22,7 @@ public class IsClosedController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Is Closed", description = "Determine if the input geometry is closed or not.")
+  @Operation(operationId = "is closed post", summary = "Is Closed", description = "Determine if the input geometry is closed or not.")
   public String post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

@@ -12,7 +12,7 @@ public class IntersectionController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Intersection", description = "Calculate the intersection between two geometries")
+  @Operation(operationId = "intersection get", summary = "Intersection", description = "Calculate the intersection between two geometries")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -23,7 +23,7 @@ public class IntersectionController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Intersection", description = "Calculate the intersection between two geometries")
+  @Operation(operationId = "intersection post", summary = "Intersection", description = "Calculate the intersection between two geometries")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

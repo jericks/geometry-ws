@@ -14,7 +14,7 @@ public class HilbertCurveController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Create a hilbert curve", description = "Create hilbert curve in a geometry")
+  @Operation(operationId = "hilbert curve get", summary = "Create a hilbert curve", description = "Create hilbert curve in a geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -26,7 +26,7 @@ public class HilbertCurveController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Create a hilbert curve", description = "Create hilbert curve in a geometry")
+  @Operation(operationId = "hilbert curve post", summary = "Create a hilbert curve", description = "Create hilbert curve in a geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

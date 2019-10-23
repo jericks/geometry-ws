@@ -12,7 +12,7 @@ public class SymDifferenceController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "SymDifference", description = "Calculate the symetric symDifference between two geometries")
+  @Operation(operationId = "symdifference get", summary = "SymDifference", description = "Calculate the symetric symDifference between two geometries")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -23,7 +23,7 @@ public class SymDifferenceController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "SymDifference", description = "Calculate the symetric symDifference between two geometries")
+  @Operation(operationId = "symdifference post", summary = "SymDifference", description = "Calculate the symetric symDifference between two geometries")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

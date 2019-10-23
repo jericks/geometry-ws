@@ -13,7 +13,7 @@ public class HausdorffDistanceController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Hausdorff Distance", description = "Get the hausdorff distance between two geometries")
+  @Operation(operationId = "hausdorff distance get", summary = "Hausdorff Distance", description = "Get the hausdorff distance between two geometries")
   public HttpResponse<String> get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -23,7 +23,7 @@ public class HausdorffDistanceController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Hausdorff Distance", description = "Get the hausdorff distance between two geometries")
+  @Operation(operationId = "hausdorff distance post", summary = "Hausdorff Distance", description = "Get the hausdorff distance between two geometries")
   public HttpResponse<String> post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

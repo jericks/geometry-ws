@@ -12,7 +12,7 @@ public class EndPointController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "End Point", description = "Get the end point of a Geometry")
+  @Operation(operationId = "end point get", summary = "End Point", description = "Get the end point of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -23,7 +23,7 @@ public class EndPointController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "End Point", description = "Get the end point of a Geometry")
+  @Operation(operationId = "end point post", summary = "End Point", description = "Get the end point of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

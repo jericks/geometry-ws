@@ -16,7 +16,7 @@ public class SliceController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Slice", description = "Get a subset of geometries using a start and end index.")
+  @Operation(operationId = "slice get", summary = "Slice", description = "Get a subset of geometries using a start and end index.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -30,7 +30,7 @@ public class SliceController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Slice", description = "Get a subset of geometries using a start and end index.")
+  @Operation(operationId = "slice post", summary = "Slice", description = "Get a subset of geometries using a start and end index.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

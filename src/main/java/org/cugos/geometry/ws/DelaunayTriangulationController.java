@@ -14,7 +14,7 @@ public class DelaunayTriangulationController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Generate Delaunay Triangulation", description = "Generate a delaunay triangulation of the input geometry")
+  @Operation(operationId = "delaunay triangulation get", summary = "Generate Delaunay Triangulation", description = "Generate a delaunay triangulation of the input geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -26,7 +26,7 @@ public class DelaunayTriangulationController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Generate Delaunay Triangulation", description = "Generate a delaunay triangulation of the input geometry")
+  @Operation(operationId = "delaunay triangulation post", summary = "Generate Delaunay Triangulation", description = "Generate a delaunay triangulation of the input geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

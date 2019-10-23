@@ -12,7 +12,7 @@ public class GetController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get", description = "Get a sub geometry from a geometry collection by index")
+  @Operation(operationId = "get geometry get", summary = "Get", description = "Get a sub geometry from a geometry collection by index")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -24,7 +24,7 @@ public class GetController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get", description = "Get a sub geometry from a geometry collection by index")
+  @Operation(operationId = "get geometry post", summary = "Get", description = "Get a sub geometry from a geometry collection by index")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

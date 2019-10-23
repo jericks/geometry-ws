@@ -13,7 +13,7 @@ public class SineStarController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Sine Star", description = "Create a sine star from the input geometry.")
+  @Operation(operationId = "sinestar get", summary = "Sine Star", description = "Create a sine star from the input geometry.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -33,7 +33,7 @@ public class SineStarController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Sine Star", description = "Create a sine star from the input geometry.")
+  @Operation(operationId = "sinestar post", summary = "Sine Star", description = "Create a sine star from the input geometry.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

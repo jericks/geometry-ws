@@ -12,7 +12,7 @@ public class ConvexHullController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate the convexhull", description = "Calculate the convexull of a Geometry")
+  @Operation(operationId = "convex hull get", summary = "Calculate the convexhull", description = "Calculate the convexull of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -23,7 +23,7 @@ public class ConvexHullController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate the convexhull", description = "Calculate the convexull of a Geometry")
+  @Operation(operationId = "convex hull post", summary = "Calculate the convexhull", description = "Calculate the convexull of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

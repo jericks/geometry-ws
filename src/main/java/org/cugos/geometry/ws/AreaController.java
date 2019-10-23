@@ -11,7 +11,7 @@ public class AreaController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get area", description = "Get the area of a Geometry")
+  @Operation(operationId = "area get", summary = "Get area", description = "Get the area of a Geometry")
   public String get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -21,7 +21,7 @@ public class AreaController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get area", description = "Get the area of a Geometry")
+  @Operation(operationId = "area post", summary = "Get area", description = "Get the area of a Geometry")
   public String post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

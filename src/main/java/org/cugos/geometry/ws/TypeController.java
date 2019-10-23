@@ -11,7 +11,7 @@ public class TypeController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get Type", description = "Get the geometry type of a Geometry")
+  @Operation(operationId = "type get", summary = "Get Type", description = "Get the geometry type of a Geometry")
   public String get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -21,7 +21,7 @@ public class TypeController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get type", description = "Get the type of a Geometry")
+  @Operation(operationId = "type post", summary = "Get type", description = "Get the type of a Geometry")
   public String post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

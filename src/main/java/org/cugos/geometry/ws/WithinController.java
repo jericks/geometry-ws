@@ -12,7 +12,7 @@ public class WithinController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Within", description = "Whether one geometry is within another")
+  @Operation(operationId = "within get", summary = "Within", description = "Whether one geometry is within another")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -22,7 +22,7 @@ public class WithinController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Within", description = "Whether one geometry is within another")
+  @Operation(operationId = "within post", summary = "Within", description = "Whether one geometry is within another")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

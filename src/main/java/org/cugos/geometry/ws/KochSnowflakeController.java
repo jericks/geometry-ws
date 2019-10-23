@@ -15,7 +15,7 @@ public class KochSnowflakeController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Create a koch snowflake", description = "Create a koch snowflake in a geometry")
+  @Operation(operationId = "koch snowflake get", summary = "Create a koch snowflake", description = "Create a koch snowflake in a geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -27,7 +27,7 @@ public class KochSnowflakeController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Create a koch snowflake", description = "Create a koch snowflake in a geometry")
+  @Operation(operationId = "koch snowflake post", summary = "Create a koch snowflake", description = "Create a koch snowflake in a geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

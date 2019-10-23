@@ -14,7 +14,7 @@ public class MortonCurveController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Morton Curve", description = "Calculate a Morton Curve around a Geometry")
+  @Operation(operationId = "morton curve get", summary = "Morton Curve", description = "Calculate a Morton Curve around a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -26,7 +26,7 @@ public class MortonCurveController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Morton Curve", description = "Calculate a Morton Curve around a Geometry")
+  @Operation(operationId = "morton curve post", summary = "Morton Curve", description = "Calculate a Morton Curve around a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

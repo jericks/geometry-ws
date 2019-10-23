@@ -15,7 +15,7 @@ public class PolygonizeController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Polygonize", description = "Creates polygons from lines.")
+  @Operation(operationId = "polygonize get", summary = "Polygonize", description = "Creates polygons from lines.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -29,7 +29,7 @@ public class PolygonizeController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Polygonize", description = "Creates polygons from lines.")
+  @Operation(operationId = "polygonize post", summary = "Polygonize", description = "Creates polygons from lines.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

@@ -12,7 +12,7 @@ public class BoundaryController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get Boundary", description = "Get the Boundary of a Geometry")
+  @Operation(operationId = "boundary get", summary = "Get Boundary", description = "Get the Boundary of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -23,7 +23,7 @@ public class BoundaryController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get Boundary", description = "Get the Boundary of a Geometry")
+  @Operation(operationId = "boundary post", summary = "Get Boundary", description = "Get the Boundary of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

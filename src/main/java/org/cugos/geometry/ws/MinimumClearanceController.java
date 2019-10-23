@@ -13,7 +13,7 @@ public class MinimumClearanceController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Minimum Clearance", description = "Calculate Minimum Clearance of a Geometry")
+  @Operation(operationId = "min clearance get", summary = "Calculate Minimum Clearance", description = "Calculate Minimum Clearance of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -24,7 +24,7 @@ public class MinimumClearanceController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Minimum Clearance", description = "Calculate Minimum Clearance of a Geometry")
+  @Operation(operationId = "min clearance post", summary = "Calculate Minimum Clearance", description = "Calculate Minimum Clearance of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

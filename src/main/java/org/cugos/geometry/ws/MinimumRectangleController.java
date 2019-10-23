@@ -13,7 +13,7 @@ public class MinimumRectangleController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Minimum Rectangle", description = "Calculate Minimum Rectangle around a Geometry")
+  @Operation(operationId = "min rect get", summary = "Calculate Minimum Rectangle", description = "Calculate Minimum Rectangle around a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -24,7 +24,7 @@ public class MinimumRectangleController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Minimum Rectangle", description = "Calculate Minimum Rectangle around a Geometry")
+  @Operation(operationId = "min rect post", summary = "Calculate Minimum Rectangle", description = "Calculate Minimum Rectangle around a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

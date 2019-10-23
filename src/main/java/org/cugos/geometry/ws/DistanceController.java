@@ -12,7 +12,7 @@ public class DistanceController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Distance", description = "Get the distance between two geometries")
+  @Operation(operationId = "distance get", summary = "Distance", description = "Get the distance between two geometries")
   public HttpResponse<String> get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -22,7 +22,7 @@ public class DistanceController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Distance", description = "Get the distance between two geometries")
+  @Operation(operationId = "distance post", summary = "Distance", description = "Get the distance between two geometries")
   public HttpResponse<String> post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

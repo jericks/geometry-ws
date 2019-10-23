@@ -12,7 +12,7 @@ public class InteriorPointController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate interior point", description = "Calculate interior point of a geometry")
+  @Operation(operationId = "interior post get", summary = "Calculate interior point", description = "Calculate interior point of a geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -23,7 +23,7 @@ public class InteriorPointController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate interior point", description = "Calculate interior point of a geometry")
+  @Operation(operationId = "interior point post", summary = "Calculate interior point", description = "Calculate interior point of a geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

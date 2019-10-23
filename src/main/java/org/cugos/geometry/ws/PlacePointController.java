@@ -13,7 +13,7 @@ public class PlacePointController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Place Point", description = "Place a point on the input linear geometry.")
+  @Operation(operationId = "place point get", summary = "Place Point", description = "Place a point on the input linear geometry.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -25,7 +25,7 @@ public class PlacePointController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Place Point", description = "Place a point on the input linear geometry.")
+  @Operation(operationId = "place point post", summary = "Place Point", description = "Place a point on the input linear geometry.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

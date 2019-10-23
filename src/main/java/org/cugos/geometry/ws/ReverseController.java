@@ -12,7 +12,7 @@ public class ReverseController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Reverse", description = "Reverse the coordinates of a Geometry")
+  @Operation(operationId = "reverse get", summary = "Reverse", description = "Reverse the coordinates of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -23,7 +23,7 @@ public class ReverseController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Reverse", description = "Reverse the coordinates of a Geometry")
+  @Operation(operationId = "reverse post", summary = "Reverse", description = "Reverse the coordinates of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

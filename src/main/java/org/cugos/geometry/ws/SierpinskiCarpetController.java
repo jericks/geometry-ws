@@ -14,7 +14,7 @@ public class SierpinskiCarpetController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Sierpinski Carpet", description = "Calculate a Sierpinski Carpet around a Geometry")
+  @Operation(operationId = "sierpinksi carpet get", summary = "Calculate Sierpinski Carpet", description = "Calculate a Sierpinski Carpet around a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -26,7 +26,7 @@ public class SierpinskiCarpetController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Sierpinski Carpet", description = "Calculate a Sierpinski Carpet around a Geometry")
+  @Operation(operationId = "sierpinksi carpet get", summary = "Calculate Sierpinski Carpet", description = "Calculate a Sierpinski Carpet around a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

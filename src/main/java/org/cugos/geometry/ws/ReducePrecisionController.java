@@ -14,7 +14,7 @@ public class ReducePrecisionController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Reduce Precision", description = "Reduce the precision of the coordinates of a Geometry")
+  @Operation(operationId = "reduce precision get", summary = "Reduce Precision", description = "Reduce the precision of the coordinates of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -30,7 +30,7 @@ public class ReducePrecisionController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Reduce Precision", description = "Reduce the precision of the coordinates of a Geometry")
+  @Operation(operationId = "reduce precision post", summary = "Reduce Precision", description = "Reduce the precision of the coordinates of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

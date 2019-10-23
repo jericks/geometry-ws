@@ -12,7 +12,7 @@ public class EnvelopeController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get Envelope", description = "Get the Envelope of a Geometry")
+  @Operation(operationId = "envelope get", summary = "Get Envelope", description = "Get the Envelope of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -23,7 +23,7 @@ public class EnvelopeController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get Envelope", description = "Get the Envelope of a Geometry")
+  @Operation(operationId = "envelope post", summary = "Get Envelope", description = "Get the Envelope of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

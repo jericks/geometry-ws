@@ -12,7 +12,7 @@ public class BufferController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Buffer a geometry", description = "Buffer a geometry with a given distance")
+  @Operation(operationId = "buffer get", summary = "Buffer a geometry", description = "Buffer a geometry with a given distance")
   public HttpResponse bufferGet(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -24,7 +24,7 @@ public class BufferController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Buffer a geometry", description = "Buffer a geometry with a given distance")
+  @Operation(operationId = "buffer post", summary = "Buffer a geometry", description = "Buffer a geometry with a given distance")
   public HttpResponse bufferPost(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

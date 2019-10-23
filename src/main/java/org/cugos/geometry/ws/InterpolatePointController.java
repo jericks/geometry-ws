@@ -13,7 +13,7 @@ public class InterpolatePointController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Interpolate Point", description = "Interpolate the location of a point on the input linear geometry given a percentage position.")
+  @Operation(operationId = "interpolate point get", summary = "Interpolate Point", description = "Interpolate the location of a point on the input linear geometry given a percentage position.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -26,7 +26,7 @@ public class InterpolatePointController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Interpolate Point", description = "Interpolate the location of a point on the input linear geometry given a percentage position.")
+  @Operation(operationId = "interpolate point post", summary = "Interpolate Point", description = "Interpolate the location of a point on the input linear geometry given a percentage position.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

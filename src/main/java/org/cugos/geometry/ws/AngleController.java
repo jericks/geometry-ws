@@ -14,7 +14,7 @@ public class AngleController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Angle", description = "Calculate the angle between two geometries")
+  @Operation(operationId = "angle get", summary = "Angle", description = "Calculate the angle between two geometries")
   public HttpResponse<String> get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString,
@@ -25,7 +25,7 @@ public class AngleController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Angle", description = "Calculate the angle between two geometries")
+  @Operation(operationId = "angle post", summary = "Angle", description = "Calculate the angle between two geometries")
   public HttpResponse<String> post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString,

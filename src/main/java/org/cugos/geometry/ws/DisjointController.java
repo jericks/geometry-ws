@@ -12,7 +12,7 @@ public class DisjointController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Disjoint", description = "Determine whether the first geometry is disjoint from the other geometry.")
+  @Operation(operationId = "disjoint get", summary = "Disjoint", description = "Determine whether the first geometry is disjoint from the other geometry.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -22,7 +22,7 @@ public class DisjointController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Disjoint", description = "Determine whether the first geometry is disjoint from the other geometry.")
+  @Operation(operationId = "disjoin post", summary = "Disjoint", description = "Determine whether the first geometry is disjoint from the other geometry.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

@@ -13,7 +13,7 @@ public class DensifyController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Densify", description = "Densify the coordinates of the input geometry.")
+  @Operation(operationId = "densify get", summary = "Densify", description = "Densify the coordinates of the input geometry.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -25,7 +25,7 @@ public class DensifyController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Densify", description = "Densify the coordinates of the input geometry.")
+  @Operation(operationId = "densify post", summary = "Densify", description = "Densify the coordinates of the input geometry.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

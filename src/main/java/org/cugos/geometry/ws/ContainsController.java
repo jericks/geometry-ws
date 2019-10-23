@@ -12,7 +12,7 @@ public class ContainsController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Contains", description = "Whether one geometry contains another")
+  @Operation(operationId = "contains get", summary = "Contains", description = "Whether one geometry contains another")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -22,7 +22,7 @@ public class ContainsController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Contains", description = "Whether one geometry contains another")
+  @Operation(operationId = "contains post", summary = "Contains", description = "Whether one geometry contains another")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

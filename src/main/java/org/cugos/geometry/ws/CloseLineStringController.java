@@ -12,7 +12,7 @@ public class CloseLineStringController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Close LineString", description = "Close a LineString to create a LinearRing")
+  @Operation(operationId = "close linestring get", summary = "Close LineString", description = "Close a LineString to create a LinearRing")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -23,7 +23,7 @@ public class CloseLineStringController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Close LineString", description = "Close a LineString to create a LinearRing")
+  @Operation(operationId = "close linestring post", summary = "Close LineString", description = "Close a LineString to create a LinearRing")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

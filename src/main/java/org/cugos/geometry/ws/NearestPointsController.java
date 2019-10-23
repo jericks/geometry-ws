@@ -15,7 +15,7 @@ public class NearestPointsController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Nearest Points", description = "Find nearest points in one geometry to another")
+  @Operation(operationId = "nearest points get", summary = "Nearest Points", description = "Find nearest points in one geometry to another")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -26,7 +26,7 @@ public class NearestPointsController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Nearest Points", description = "Find nearest points in one geometry to another")
+  @Operation(operationId = "nearest points post", summary = "Nearest Points", description = "Find nearest points in one geometry to another")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

@@ -16,7 +16,7 @@ public class PointsAlongController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Points Along", description = "Create points along a linestring")
+  @Operation(operationId = "points along get", summary = "Points Along", description = "Create points along a linestring")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -29,7 +29,7 @@ public class PointsAlongController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Points Along", description = "Create points along a linestring")
+  @Operation(operationId = "points along post", summary = "Points Along", description = "Create points along a linestring")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

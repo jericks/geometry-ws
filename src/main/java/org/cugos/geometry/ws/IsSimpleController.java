@@ -11,7 +11,7 @@ public class IsSimpleController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Is Simple", description = "Determine if the input geometry is simple or not.")
+  @Operation(operationId = "is simple get", summary = "Is Simple", description = "Determine if the input geometry is simple or not.")
   public String get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -21,7 +21,7 @@ public class IsSimpleController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Is Simple", description = "Determine if the input geometry is simple or not.")
+  @Operation(operationId = "is simple post", summary = "Is Simple", description = "Determine if the input geometry is simple or not.")
   public String post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

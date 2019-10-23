@@ -13,7 +13,7 @@ public class VoronoiDiagramController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Voronoi Diagram", description = "Calculate a Voronoi Diagram around a Geometry")
+  @Operation(operationId = "voronoi get", summary = "Calculate Voronoi Diagram", description = "Calculate a Voronoi Diagram around a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -24,7 +24,7 @@ public class VoronoiDiagramController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Voronoi Diagram", description = "Calculate a Voronoi Diagram around a Geometry")
+  @Operation(operationId = "voronoi post", summary = "Calculate Voronoi Diagram", description = "Calculate a Voronoi Diagram around a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

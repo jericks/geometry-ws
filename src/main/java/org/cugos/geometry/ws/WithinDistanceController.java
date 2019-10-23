@@ -12,7 +12,7 @@ public class WithinDistanceController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Within Distance", description = "Whether one geometry is within a distance of another")
+  @Operation(operationId = "within distance get", summary = "Within Distance", description = "Whether one geometry is within a distance of another")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString,
@@ -23,7 +23,7 @@ public class WithinDistanceController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Within Distance", description = "Whether one geometry is within a distance of another")
+  @Operation(operationId = "within distance post", summary = "Within Distance", description = "Whether one geometry is within a distance of another")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString,

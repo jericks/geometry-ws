@@ -11,7 +11,7 @@ public class CountGeometriesController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Count Geometries", description = "Count the number of Geometries in the input Geometry.")
+  @Operation(operationId = "count geometries get", summary = "Count Geometries", description = "Count the number of Geometries in the input Geometry.")
   public String get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -21,7 +21,7 @@ public class CountGeometriesController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Count Geometries", description = "Count the number of Geometries in the input Geometry.")
+  @Operation(operationId = "count geometries post", summary = "Count Geometries", description = "Count the number of Geometries in the input Geometry.")
   public String post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

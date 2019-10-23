@@ -12,7 +12,7 @@ public class IntersectsController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Intersects", description = "Whether one geometry intsects another")
+  @Operation(operationId = "intersects get", summary = "Intersects", description = "Whether one geometry intsects another")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -22,7 +22,7 @@ public class IntersectsController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Intersects", description = "Whether one geometry intsects another")
+  @Operation(operationId = "intersects post", summary = "Intersects", description = "Whether one geometry intsects another")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

@@ -14,7 +14,7 @@ public class CoordinatesController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get Coordinates", description = "Get the coordinates of the geometry.")
+  @Operation(operationId = "coordinates get", summary = "Get Coordinates", description = "Get the coordinates of the geometry.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -26,7 +26,7 @@ public class CoordinatesController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get Coordinates", description = "Get the coordinates of the geometry.")
+  @Operation(operationId = "coordinates post", summary = "Get Coordinates", description = "Get the coordinates of the geometry.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

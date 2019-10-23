@@ -14,7 +14,7 @@ public class CentroidController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate the centroid", description = "Calculate the centroid of a Geometry")
+  @Operation(operationId = "centroid get", summary = "Calculate the centroid", description = "Calculate the centroid of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -25,7 +25,7 @@ public class CentroidController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate the centroid", description = "Calculate the centroid of a Geometry")
+  @Operation(operationId = "centroid post", summary = "Calculate the centroid", description = "Calculate the centroid of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

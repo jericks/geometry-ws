@@ -18,7 +18,7 @@ public class RandomWalkController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Random Walk", description = "Generate a random walk")
+  @Operation(operationId = "random walk get", summary = "Random Walk", description = "Generate a random walk")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -34,7 +34,7 @@ public class RandomWalkController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Random Walk", description = "Generate a random walk")
+  @Operation(operationId = "random walk post", summary = "Random Walk", description = "Generate a random walk")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

@@ -12,7 +12,7 @@ public class CoveredByController {
   
   @Get("/{from}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Covered By", description = "Whether one geometry covered by another")
+  @Operation(operationId = "coveredby get", summary = "Covered By", description = "Whether one geometry covered by another")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -22,7 +22,7 @@ public class CoveredByController {
   @Post("/{from}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Covered By", description = "Whether one geometry covered by another")
+  @Operation(operationId = "coveredby post", summary = "Covered By", description = "Whether one geometry covered by another")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

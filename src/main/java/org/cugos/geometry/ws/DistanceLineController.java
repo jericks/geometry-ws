@@ -16,7 +16,7 @@ public class DistanceLineController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Distance LineString", description = "Generate a LineString representing the shortest distanceLineString between two geometries.")
+  @Operation(operationId = "distance linestring get", summary = "Distance LineString", description = "Generate a LineString representing the shortest distanceLineString between two geometries.")
   public HttpResponse<String> get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -27,7 +27,7 @@ public class DistanceLineController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Distance", description = "Get the distanceLineString between two geometries")
+  @Operation(operationId = "distance linestring post", summary = "Distance", description = "Get the distanceLineString between two geometries")
   public HttpResponse<String> post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

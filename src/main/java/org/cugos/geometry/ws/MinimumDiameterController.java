@@ -13,7 +13,7 @@ public class MinimumDiameterController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Minimum Diameter", description = "Calculate Minimum Diameter of a Geometry")
+  @Operation(operationId = "min diameter get", summary = "Calculate Minimum Diameter", description = "Calculate Minimum Diameter of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -24,7 +24,7 @@ public class MinimumDiameterController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Calculate Minimum Diameter", description = "Calculate Minimum Diameter of a Geometry")
+  @Operation(operationId = "min diameter post", summary = "Calculate Minimum Diameter", description = "Calculate Minimum Diameter of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

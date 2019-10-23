@@ -13,7 +13,7 @@ public class EllipseController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Ellipse", description = "Create a ellipse from the input geometry.")
+  @Operation(operationId = "ellipse get", summary = "Ellipse", description = "Create a ellipse from the input geometry.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -31,7 +31,7 @@ public class EllipseController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Ellipse", description = "Create a ellipse from the input geometry.")
+  @Operation(operationId = "ellipse post", summary = "Ellipse", description = "Create a ellipse from the input geometry.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

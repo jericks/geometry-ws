@@ -12,7 +12,7 @@ public class TouchesController {
 
     @Get("/{from}")
     @Produces(MediaType.TEXT_PLAIN)
-    @Operation(summary = "Touches", description = "Whether one geometry touches another")
+    @Operation(operationId = "touches get", summary = "Touches", description = "Whether one geometry touches another")
     public HttpResponse get(
         @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
         @Parameter(description = "Input Geometry") @QueryValue("geom") String geometryString) throws Exception {
@@ -22,7 +22,7 @@ public class TouchesController {
     @Post("/{from}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
-    @Operation(summary = "Touches", description = "Whether one geometry touches another")
+    @Operation(operationId = "touches post", summary = "Touches", description = "Whether one geometry touches another")
     public HttpResponse post(
         @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
         @Parameter(description = "Input Geometry") @Body String geometryString) throws Exception {

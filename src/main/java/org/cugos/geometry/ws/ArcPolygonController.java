@@ -13,7 +13,7 @@ public class ArcPolygonController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Arc Polygon", description = "Creates an arc polygon from a start angle and an angle extent.")
+  @Operation(operationId = "arc polygon get", summary = "Arc Polygon", description = "Creates an arc polygon from a start angle and an angle extent.")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -35,7 +35,7 @@ public class ArcPolygonController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Arc Polygon", description = "Creates an arc polygon from a start angle and an angle extent.")
+  @Operation(operationId = "arc polygon post", summary = "Arc Polygon", description = "Creates an arc polygon from a start angle and an angle extent.")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,

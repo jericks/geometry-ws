@@ -13,7 +13,7 @@ public class OctagonalEnvelopeController {
   
   @Get("/{from}/{to}")
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get Octagonal Envelope", description = "Get the Octagonal Envelope of a Geometry")
+  @Operation(operationId = "octagonal env get", summary = "Get Octagonal Envelope", description = "Get the Octagonal Envelope of a Geometry")
   public HttpResponse get(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
@@ -24,7 +24,7 @@ public class OctagonalEnvelopeController {
   @Post("/{from}/{to}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(summary = "Get Octagonal Envelope", description = "Get the Octagonal Envelope of a Geometry")
+  @Operation(operationId = "octagonal env post", summary = "Get Octagonal Envelope", description = "Get the Octagonal Envelope of a Geometry")
   public HttpResponse post(
       @Parameter(description = "Input Geometry Format (wkt, geojson, kml, gml2)")  String from,
       @Parameter(description = "Output Geometry Format (wkt, geojson, kml, gml2)") String to,
