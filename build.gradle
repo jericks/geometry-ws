@@ -31,6 +31,7 @@ dependencies {
     compile "io.swagger.core.v3:swagger-annotations"
     compile "org.locationtech.jts:jts-core:1.16.1"
     compile "org.locationtech.jts.io:jts-io-common:1.16.0"
+    compile "org.osgeo:proj4j:0.1.0"
     compile "io.micronaut:micronaut-inject"
     compile "io.micronaut:micronaut-validation"
     compile "io.micronaut:micronaut-runtime"
