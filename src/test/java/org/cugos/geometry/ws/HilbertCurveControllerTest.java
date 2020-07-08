@@ -2,12 +2,12 @@ package org.cugos.geometry.ws;
 
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Geometry;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HilbertCurveControllerTest extends AbstractControllerTest  {
 

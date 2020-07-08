@@ -2,13 +2,13 @@ package org.cugos.geometry.ws;
 
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RandomWalkControllerTest extends AbstractControllerTest  {
 

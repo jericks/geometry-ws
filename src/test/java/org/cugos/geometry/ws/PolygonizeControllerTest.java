@@ -2,7 +2,7 @@ package org.cugos.geometry.ws;
 
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryCollection;
 import org.locationtech.jts.geom.MultiPolygon;
@@ -10,8 +10,8 @@ import org.locationtech.jts.io.WKTReader;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class PolygonizeControllerTest extends AbstractControllerTest  {
 

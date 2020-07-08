@@ -3,11 +3,12 @@ package org.cugos.geometry.ws;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.client.exceptions.HttpClientException;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EqualsControllerTest extends AbstractControllerTest  {
 
@@ -71,11 +72,13 @@ public class EqualsControllerTest extends AbstractControllerTest  {
         assertEquals("true", geometry);
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void badRequest() throws Exception {
-        String inputGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
-        HttpRequest request = HttpRequest.GET("/equals/wkt?geom=" + URLEncoder.encode(inputGeometry, "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            String inputGeometry = "POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0))";
+            HttpRequest request = HttpRequest.GET("/equals/wkt?geom=" + URLEncoder.encode(inputGeometry, "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 
 }

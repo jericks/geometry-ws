@@ -3,11 +3,12 @@ package org.cugos.geometry.ws;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.client.exceptions.HttpClientException;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReducePrecisionControllerTest extends AbstractControllerTest  {
 
@@ -85,16 +86,18 @@ public class ReducePrecisionControllerTest extends AbstractControllerTest  {
         assertEquals("POINT (5.19775390625 51.07421875)", geometry);
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void badRequest() throws Exception {
-        HttpRequest request = HttpRequest.GET("/reducePrecision/wkt/wkt" +
-            "?geom=" + URLEncoder.encode(inputGeometry, "UTF-8") +
-            "&type=BAD_TYPE" +
-            "&scale=0.0" +
-            "&pointwise=false" +
-            "&removeCollapsed=false"
-        );
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/reducePrecision/wkt/wkt" +
+                    "?geom=" + URLEncoder.encode(inputGeometry, "UTF-8") +
+                    "&type=BAD_TYPE" +
+                    "&scale=0.0" +
+                    "&pointwise=false" +
+                    "&removeCollapsed=false"
+            );
+            client.toBlocking().retrieve(request);
+        });
     }
 
 }

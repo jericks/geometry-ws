@@ -3,14 +3,13 @@ package org.cugos.geometry.ws;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.client.exceptions.HttpClientException;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.io.WKTReader;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SplitControllerTest extends AbstractControllerTest  {
 
@@ -37,10 +36,12 @@ public class SplitControllerTest extends AbstractControllerTest  {
         assertEquals(2, splitGeom.getNumGeometries());
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void badRequest() throws Exception {
-        HttpRequest request = HttpRequest.GET("/split/wkt/wkt?geom=" + URLEncoder.encode(inputGeometry, "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/split/wkt/wkt?geom=" + URLEncoder.encode(inputGeometry, "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 
 }

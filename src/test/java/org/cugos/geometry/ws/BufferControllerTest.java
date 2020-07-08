@@ -2,8 +2,8 @@ package org.cugos.geometry.ws;
 
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BufferControllerTest extends AbstractControllerTest {
 

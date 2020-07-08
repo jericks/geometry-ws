@@ -3,11 +3,12 @@ package org.cugos.geometry.ws;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.client.exceptions.HttpClientException;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CloseLineStringControllerTest extends AbstractControllerTest  {
 
@@ -38,16 +39,20 @@ public class CloseLineStringControllerTest extends AbstractControllerTest  {
         assertEquals(resultGeometry, geometry);
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void badRequestWithPoint() throws Exception {
-        HttpRequest request = HttpRequest.GET("/closeLineString/wkt/wkt?geom=" + URLEncoder.encode("POINT (1 1)", "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/closeLineString/wkt/wkt?geom=" + URLEncoder.encode("POINT (1 1)", "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void badRequestWithShortLine() throws Exception {
-        HttpRequest request = HttpRequest.GET("/closeLineString/wkt/wkt?geom=" + URLEncoder.encode("LINESTRING (1 1, 2 2)", "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/closeLineString/wkt/wkt?geom=" + URLEncoder.encode("LINESTRING (1 1, 2 2)", "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 
 }

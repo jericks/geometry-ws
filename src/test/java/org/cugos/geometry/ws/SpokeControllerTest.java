@@ -3,14 +3,15 @@ package org.cugos.geometry.ws;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.client.exceptions.HttpClientException;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.MultiLineString;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SpokeControllerTest extends AbstractControllerTest  {
 
@@ -42,10 +43,12 @@ public class SpokeControllerTest extends AbstractControllerTest  {
         assertEquals(5, spokeGeometry.getNumGeometries());
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void badRequest() throws Exception {
-        HttpRequest request = HttpRequest.GET("/spoke/wkt/geojson?geom=" + URLEncoder.encode(pt, "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/spoke/wkt/geojson?geom=" + URLEncoder.encode(pt, "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 
 }

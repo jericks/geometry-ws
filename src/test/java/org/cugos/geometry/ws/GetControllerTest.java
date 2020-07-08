@@ -3,11 +3,12 @@ package org.cugos.geometry.ws;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.client.exceptions.HttpClientException;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetControllerTest extends AbstractControllerTest  {
 
@@ -31,10 +32,12 @@ public class GetControllerTest extends AbstractControllerTest  {
                 "</Point>\n", geometry);
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void badRequest() throws Exception {
-        HttpRequest request = HttpRequest.GET("/get/wkt/wkt?index=7&geom=" + URLEncoder.encode(geometry, "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/get/wkt/wkt?index=7&geom=" + URLEncoder.encode(geometry, "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 
 }

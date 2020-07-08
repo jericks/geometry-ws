@@ -3,11 +3,12 @@ package org.cugos.geometry.ws;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.client.exceptions.HttpClientException;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SimplifyControllerTest extends AbstractControllerTest  {
 
@@ -46,13 +47,15 @@ public class SimplifyControllerTest extends AbstractControllerTest  {
         assertEquals("LINESTRING (1 1, 12 12)", geometry);
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void badRequest() throws Exception {
-        HttpRequest request = HttpRequest.GET("/simplify/wkt/wkt" +
-                "?algorithm=bad_algorithm" +
-                "&tolerance=2.0" +
-                "&geom=" + URLEncoder.encode(inputGeometry, "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/simplify/wkt/wkt" +
+                    "?algorithm=bad_algorithm" +
+                    "&tolerance=2.0" +
+                    "&geom=" + URLEncoder.encode(inputGeometry, "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 
 }

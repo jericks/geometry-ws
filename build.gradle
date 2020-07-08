@@ -4,10 +4,8 @@ plugins {
     id "net.ltgt.apt-eclipse" version "0.21"
     id "net.ltgt.apt-idea" version "0.21"
     id 'jacoco'
+    id 'application'
 }
-
-apply plugin:"application"
-apply plugin:"java"
 
 version "0.1.0"
 group "org.cugos.geometry.ws"

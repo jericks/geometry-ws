@@ -3,12 +3,13 @@ package org.cugos.geometry.ws;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.client.exceptions.HttpClientException;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Geometry;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RandomPointsControllerTest extends AbstractControllerTest  {
 
@@ -74,9 +75,11 @@ public class RandomPointsControllerTest extends AbstractControllerTest  {
         assertEquals(10, geometry.getNumGeometries());
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void badRequest() throws Exception {
-        HttpRequest request = HttpRequest.GET("/randomPoints/wkt/wkt?number=10&geom=" + URLEncoder.encode("POINT (1 2)", "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/randomPoints/wkt/wkt?number=10&geom=" + URLEncoder.encode("POINT (1 2)", "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 }

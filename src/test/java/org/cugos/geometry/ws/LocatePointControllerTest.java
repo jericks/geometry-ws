@@ -3,11 +3,12 @@ package org.cugos.geometry.ws;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.client.exceptions.HttpClientException;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.net.URLEncoder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LocatePointControllerTest extends AbstractControllerTest  {
 
@@ -31,16 +32,20 @@ public class LocatePointControllerTest extends AbstractControllerTest  {
         assertEquals("0.25", geometry);
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void onlyOneGeomtry() throws Exception {
-        HttpRequest request = HttpRequest.GET("/locatePoint/wkt?geom=" + URLEncoder.encode(geometry, "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/locatePoint/wkt?geom=" + URLEncoder.encode(geometry, "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 
-    @Test(expected = HttpClientException.class)
+    @Test
     public void missingPoint() throws Exception {
-        HttpRequest request = HttpRequest.GET("/locatePoint/wkt?geom=" + URLEncoder.encode(Geometries.geometryCollection(geometry, polygonGeometry), "UTF-8"));
-        client.toBlocking().retrieve(request);
+        Assertions.assertThrows(HttpClientException.class, () -> {
+            HttpRequest request = HttpRequest.GET("/locatePoint/wkt?geom=" + URLEncoder.encode(Geometries.geometryCollection(geometry, polygonGeometry), "UTF-8"));
+            client.toBlocking().retrieve(request);
+        });
     }
 
 }
