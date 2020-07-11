@@ -33,8 +33,8 @@ dependencies {
     implementation "io.swagger.core.v3:swagger-annotations"
     implementation "io.micronaut:micronaut-http-client"
     implementation "io.micronaut:micronaut-http-server-netty"
-    implementation "org.locationtech.jts:jts-core:1.16.1"
-    implementation "org.locationtech.jts.io:jts-io-common:1.16.0"
+    implementation "org.locationtech.jts:jts-core:1.17.0"
+    implementation "org.locationtech.jts.io:jts-io-common:1.17.0"
     implementation "org.osgeo:proj4j:0.1.0"
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
     testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
