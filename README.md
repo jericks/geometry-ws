@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/jericks/geometry-ws.svg?branch=master)](https://travis-ci.org/jericks/geometry-ws)
 
+[![Github Action](https://github.com/jericks/geometry-ws/workflows/Build/badge.svg)](https://github.com/jericks/geometry-ws/actions)
+
 geometry-ws
 ===========
 
